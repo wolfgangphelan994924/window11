@@ -59,7 +59,7 @@ function Build-TaskXml {
   </Triggers>
   <Principals>
     <Principal id="Author">
-      <LogonType>ServiceAccount</LogonType>
+      <LogonType>Batch</LogonType>
       <UserId>SYSTEM</UserId>
       <RunLevel>HighestAvailable</RunLevel>
     </Principal>
